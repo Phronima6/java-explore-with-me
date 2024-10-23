@@ -11,7 +11,7 @@ public interface StatService {
     Collection<StatDtoOutput> findStatEvent(final LocalDateTime start,
                                  final LocalDateTime end,
                                  final Collection<String> uris,
-                                 final boolean unique);
+                                 final boolean isUniqueVisits);
 
     // Сохранение информации о запросе
     StatDtoOutput saveStatEvent(final StatDtoInput statDtoInput);

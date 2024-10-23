@@ -29,17 +29,17 @@ public class StatServiceImplements implements StatService {
     public Collection<StatDtoOutput> findStatEvent(final LocalDateTime start,
                                                    final LocalDateTime end,
                                                    final Collection<String> uris,
-                                                   final boolean unique) {
+                                                   final boolean isUniqueVisits) {
         log.info("Поиск списка статистики");
         if (start.isAfter(end)) {
             throw new EWMValidationException("Дата начала не может быть позже даты окончания");
         }
         if (uris.isEmpty()) {
             log.info("Поиск списка всех элементов статистики");
-            return unique ? statRepository.findAllUniqueIp(start, end) : statRepository.findAllCount(start, end);
+            return isUniqueVisits ? statRepository.findAllUniqueIp(start, end) : statRepository.findAllCount(start, end);
         }
-        log.info("Поиск списка {} элементов статистики для конкретных uri", unique ? "уникальных " : "не уникальных ");
-        return unique ? statRepository.findAllUniqueUris(start, end, uris)
+        log.info("Поиск списка {} элементов статистики для конкретных uri", isUniqueVisits ? "уникальных " : "не уникальных ");
+        return isUniqueVisits ? statRepository.findAllUniqueUris(start, end, uris)
                 : statRepository.findAllNoUniqueUris(start, end, uris);
     }
 

@@ -30,18 +30,18 @@ public class StatClient extends BaseClient {
     public ResponseEntity<Object> findStatEvent(final String start,
                                                 final String end,
                                                 @Nullable final Collection<String> uris,
-                                                final boolean unique) {
+                                                final boolean isUniqueVisits) {
         Map<String, Object> parameters;
         if (Objects.isNull(uris)) {
             parameters = Map.of("start", URLEncoder.encode(start, StandardCharsets.UTF_8),
                     "end", URLEncoder.encode(end, StandardCharsets.UTF_8),
-                    "unique", unique);
+                    "unique", isUniqueVisits);
             return get("/stats?start={start}&end={end}&unique={unique}", parameters);
         }
         parameters = Map.of("start", URLEncoder.encode(start, StandardCharsets.UTF_8),
                 "end", URLEncoder.encode(end, StandardCharsets.UTF_8),
                 "uris", String.join(",", uris),
-                "unique", unique);
+                "unique", isUniqueVisits);
         return get("/stats?start={start}&end={end}&unique={unique}&uris={uris}", parameters);
     }
 

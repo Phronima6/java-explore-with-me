@@ -28,8 +28,8 @@ public class StatController {
             @RequestParam @DateTimeFormat(pattern = DATE_FORMAT) final LocalDateTime start,
             @RequestParam @DateTimeFormat(pattern = DATE_FORMAT) final LocalDateTime end,
             @RequestParam(defaultValue = "") final Collection<String> uris,
-            @RequestParam(defaultValue = "false") final boolean unique) {
-        return statService.findStatEvent(start, end, uris, unique);
+            @RequestParam(value = "unique", defaultValue = "false") final boolean isUniqueVisits) {
+        return statService.findStatEvent(start, end, uris, isUniqueVisits);
     }
 
     @PostMapping("/hit")
