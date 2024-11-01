@@ -20,22 +20,21 @@ import java.util.Collection;
 public class StatController {
 
     StatService statService;
-
     static final String DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
 
     @GetMapping("/stats")
-    public Collection<StatDtoOutput> findStatEvent(
+    public Collection<StatDtoOutput> getStatEvent(
             @RequestParam @DateTimeFormat(pattern = DATE_FORMAT) final LocalDateTime start,
             @RequestParam @DateTimeFormat(pattern = DATE_FORMAT) final LocalDateTime end,
             @RequestParam(defaultValue = "") final Collection<String> uris,
-            @RequestParam(value = "unique", defaultValue = "false") final boolean isUniqueVisits) {
-        return statService.findStatEvent(start, end, uris, isUniqueVisits);
+            @RequestParam(value = "unique", defaultValue = "false") final Boolean isUniqueVisits) {
+        return statService.getStatEvent(start, end, uris, isUniqueVisits);
     }
 
     @PostMapping("/hit")
     @ResponseStatus(HttpStatus.CREATED)
-    public StatDtoOutput saveStatEvent(@RequestBody final StatDtoInput statDto) {
-        return statService.saveStatEvent(statDto);
+    public StatDtoOutput createStatEvent(@RequestBody final StatDtoInput statDtoInput) {
+        return statService.createStatEvent(statDtoInput);
     }
 
 }

@@ -10,7 +10,7 @@ public class ErrorHandler {
 
     @ExceptionHandler
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public ErrorResponse handleDataSave(final EWMValidationException exception) {
+    public ErrorResponse handleDataSave(final EWMInternalServerErrorException exception) {
         return new ErrorResponse("error", exception.getMessage());
     }
 

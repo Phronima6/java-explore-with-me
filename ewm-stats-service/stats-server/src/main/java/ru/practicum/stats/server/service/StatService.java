@@ -7,13 +7,13 @@ import java.util.Collection;
 
 public interface StatService {
 
-    // Получение статистики по посещениям
-    Collection<StatDtoOutput> findStatEvent(final LocalDateTime start,
-                                 final LocalDateTime end,
-                                 final Collection<String> uris,
-                                 final boolean isUniqueVisits);
-
     // Сохранение информации о запросе
-    StatDtoOutput saveStatEvent(final StatDtoInput statDtoInput);
+    StatDtoOutput createStatEvent(final StatDtoInput statDtoInput);
+
+    // Получение статистики по посещениям
+    Collection<StatDtoOutput> getStatEvent(final LocalDateTime start,
+                                           final LocalDateTime end,
+                                           final Collection<String> uris,
+                                           final Boolean isUniqueVisits);
 
 }
