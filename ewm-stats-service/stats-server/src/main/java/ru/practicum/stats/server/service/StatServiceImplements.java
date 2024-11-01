@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.practicum.stats.dto.StatDtoInput;
 import ru.practicum.stats.dto.StatDtoOutput;
-import ru.practicum.stats.server.exception.EWMInternalServerErrorException;
+import ru.practicum.stats.server.exception.EWMBadRequestException;
 import ru.practicum.stats.server.mapper.StatMapper;
 import ru.practicum.stats.server.model.Stat;
 import ru.practicum.stats.server.repository.StatRepository;
@@ -41,7 +41,7 @@ public class StatServiceImplements implements StatService {
                                                   final Boolean isUniqueVisits) {
         log.info("Поиск списка статистики");
         if (start.isAfter(end)) {
-            throw new EWMInternalServerErrorException("Дата начала не может быть позже даты окончания");
+            throw new EWMBadRequestException("Дата начала не может быть позже даты окончания");
         }
         if (uris.isEmpty()) {
             log.info("Поиск списка всех элементов статистики");

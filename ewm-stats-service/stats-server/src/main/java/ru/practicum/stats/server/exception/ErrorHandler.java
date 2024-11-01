@@ -9,6 +9,12 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class ErrorHandler {
 
     @ExceptionHandler
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ErrorResponse handleDataSave(final EWMBadRequestException exception) {
+        return new ErrorResponse("error", exception.getMessage());
+    }
+
+    @ExceptionHandler
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ErrorResponse handleDataSave(final EWMInternalServerErrorException exception) {
         return new ErrorResponse("error", exception.getMessage());
