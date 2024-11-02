@@ -19,12 +19,13 @@ import java.util.List;
 public class RequestController {
 
     RequestService requestService;
-    static final String PATH_REQUEST_ID = "request-id";
+    static final String REQUEST_ID = "request-id";
+    static final String PATH_REQUEST_ID = "/{request-id}";
     static final String PATH_USER_ID = "user-id";
 
-    @PatchMapping("/{" + PATH_REQUEST_ID + "}/cancel")
+    @PatchMapping(PATH_REQUEST_ID + "/cancel")
     public RequestDto cancelRequest(@PathVariable(PATH_USER_ID) @Positive final Long userId,
-                                    @PathVariable(PATH_REQUEST_ID) @Positive final Long requestId) {
+                                    @PathVariable(REQUEST_ID) @Positive final Long requestId) {
         return requestService.cancelRequest(userId, requestId);
     }
 

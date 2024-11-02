@@ -22,7 +22,8 @@ import java.util.List;
 public class UserController {
 
     UserService userService;
-    static final String PATH_USER_ID = "user-id";
+    static final String USER_ID = "user-id";
+    static final String PATH_USER_ID = "/{user-id}";
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -30,9 +31,9 @@ public class UserController {
         return userService.createUser(userRequestDto);
     }
 
-    @DeleteMapping("/{" + PATH_USER_ID + "}")
+    @DeleteMapping(PATH_USER_ID)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteUser(@PathVariable(PATH_USER_ID) final Long userId) {
+    public void deleteUser(@PathVariable(USER_ID) final Long userId) {
         userService.deleteUser(userId);
     }
 

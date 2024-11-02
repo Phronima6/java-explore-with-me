@@ -20,7 +20,8 @@ import java.util.List;
 public class PublicCompilationController {
 
     CompilationServiceImpl compilationService;
-    static final String PATH_COMPILATION_ID = "comp-id";
+    static final String COMPILATION_ID = "comp-id";
+    static final String PATH_COMPILATION_ID = "/{comp-id}";
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
@@ -30,9 +31,9 @@ public class PublicCompilationController {
         return compilationService.getCompilations(pinned, from, size);
     }
 
-    @GetMapping("/{" + PATH_COMPILATION_ID + "}")
+    @GetMapping(PATH_COMPILATION_ID)
     @ResponseStatus(HttpStatus.OK)
-    public CompilationResponseDto getCompilation(@PathVariable(PATH_COMPILATION_ID) final Long compId) {
+    public CompilationResponseDto getCompilation(@PathVariable(COMPILATION_ID) final Long compId) {
         return compilationService.getCompilation(compId);
     }
 

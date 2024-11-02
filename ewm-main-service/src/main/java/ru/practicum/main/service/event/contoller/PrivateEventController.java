@@ -24,45 +24,46 @@ import java.util.Map;
 public class PrivateEventController {
 
     EventService eventService;
-    static final String PATH_EVENT_ID = "event-id";
-    static final String PATH_USER_ID = "user-id";
+    static final String EVENT_ID = "event-id";
+    static final String PATH_EVENT_ID = "/{event-id}";
+    static final String USER_ID = "user-id";
 
-    @PatchMapping("/{" + PATH_EVENT_ID + "}/requests")
-    public Map<String, List<RequestDto>> approveRequestsByPrivate(@PathVariable(PATH_USER_ID) final Long userId,
-                                                                  @PathVariable(PATH_EVENT_ID) final Long eventId,
+    @PatchMapping(PATH_EVENT_ID + "/requests")
+    public Map<String, List<RequestDto>> approveRequestsByPrivate(@PathVariable(USER_ID) final Long userId,
+                                                                  @PathVariable(EVENT_ID) final Long eventId,
                                                                   @RequestBody @Valid final RequestUpdateDto requestUpdateDto) {
         return eventService.approveRequestsByPrivate(userId, eventId, requestUpdateDto);
     }
 
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
-    public EventResponseLongDto createEventByPrivate(@PathVariable(PATH_USER_ID) @Positive final Long userId,
+    public EventResponseLongDto createEventByPrivate(@PathVariable(USER_ID) @Positive final Long userId,
                                                      @RequestBody @Valid final EventRequestDto eventRequestDto) {
         return eventService.createEventByPrivate(userId, eventRequestDto);
     }
 
-    @GetMapping("/{" + PATH_EVENT_ID + "}")
-    public EventResponseLongDto getEventByPrivate(@PathVariable(PATH_USER_ID) @Positive final Long userId,
-                                                  @PathVariable(PATH_EVENT_ID) @Positive final Long eventId) {
+    @GetMapping(PATH_EVENT_ID)
+    public EventResponseLongDto getEventByPrivate(@PathVariable(USER_ID) @Positive final Long userId,
+                                                  @PathVariable(EVENT_ID) @Positive final Long eventId) {
         return eventService.getEventByPrivate(userId, eventId);
     }
 
     @GetMapping
-    public List<EventResponseShortDto> getEventsByPrivate(@PathVariable(PATH_USER_ID) @Positive final Long userId,
+    public List<EventResponseShortDto> getEventsByPrivate(@PathVariable(USER_ID) @Positive final Long userId,
                                                           @RequestParam(defaultValue = "0") @PositiveOrZero final int from,
                                                           @RequestParam(defaultValue = "10") @Positive final int size) {
         return eventService.getEventsByPrivate(userId, from, size);
     }
 
-    @GetMapping("/{" + PATH_EVENT_ID + "}/requests")
-    public List<RequestDto> getRequestsEventByPrivate(@PathVariable(PATH_USER_ID) final Long userId,
-                                                      @PathVariable(PATH_EVENT_ID) final Long eventId) {
+    @GetMapping(PATH_EVENT_ID + "/requests")
+    public List<RequestDto> getRequestsEventByPrivate(@PathVariable(USER_ID) final Long userId,
+                                                      @PathVariable(EVENT_ID) final Long eventId) {
         return eventService.getRequestsEventByPrivate(userId, eventId);
     }
 
-    @PatchMapping("/{" + PATH_EVENT_ID + "}")
-    public EventResponseLongDto updateEventByPrivate(@PathVariable(PATH_USER_ID) @Positive final Long userId,
-                                                     @PathVariable(PATH_EVENT_ID) @Positive final Long eventId,
+    @PatchMapping(PATH_EVENT_ID)
+    public EventResponseLongDto updateEventByPrivate(@PathVariable(USER_ID) @Positive final Long userId,
+                                                     @PathVariable(EVENT_ID) @Positive final Long eventId,
                                                      @RequestBody @Valid final EventUpdateUserDto eventUpdateUserDto) {
         return eventService.updateEventByPrivate(userId, eventId, eventUpdateUserDto);
     }

@@ -19,7 +19,8 @@ import java.util.List;
 public class PublicCategoryController {
 
     CategoryService categoryService;
-    static final String PATH_CATEGORY_ID = "cat-id";
+    static final String CATEGORY_ID = "cat-id";
+    static final String PATH_CATEGORY_ID = "/{cat-id}";
 
     @GetMapping
     public List<CategoryResponseDto> getCategories(@RequestParam(defaultValue = "0") @PositiveOrZero final int from,
@@ -27,8 +28,8 @@ public class PublicCategoryController {
         return categoryService.getCategories(from, size);
     }
 
-    @GetMapping("/{" + PATH_CATEGORY_ID + "}")
-    public CategoryResponseDto getCategory(@PathVariable(PATH_CATEGORY_ID) @Positive final Long categoryId) {
+    @GetMapping(PATH_CATEGORY_ID)
+    public CategoryResponseDto getCategory(@PathVariable(CATEGORY_ID) @Positive final Long categoryId) {
         return categoryService.getCategory(categoryId);
     }
 

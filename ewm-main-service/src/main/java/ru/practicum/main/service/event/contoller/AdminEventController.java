@@ -21,10 +21,11 @@ import java.util.List;
 public class AdminEventController {
 
     EventService eventService;
-    static final String PATH_EVENT_ID = "event-id";
+    static final String EVENT_ID = "event-id";
+    static final String PATH_EVENT_ID = "/{event-id}";
 
-    @PatchMapping("/{" + PATH_EVENT_ID + "}")
-    public EventResponseLongDto approveRequestsByAdministrator(@PathVariable(PATH_EVENT_ID) @Positive final Long eventId,
+    @PatchMapping(PATH_EVENT_ID)
+    public EventResponseLongDto approveRequestsByAdministrator(@PathVariable(EVENT_ID) @Positive final Long eventId,
                                                                @RequestBody @Valid final EventUpdateDto eventUpdateDto) {
         return eventService.approveRequestsByAdministrator(eventId, eventUpdateDto);
     }

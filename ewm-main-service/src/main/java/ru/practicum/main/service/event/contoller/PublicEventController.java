@@ -22,7 +22,8 @@ import java.util.List;
 public class PublicEventController {
 
     EventService eventService;
-    static final String PATH_EVENT_ID = "event-id";
+    static final String EVENT_ID = "event-id";
+    static final String PATH_EVENT_ID = "/{event-id}";
 
     @GetMapping
     public List<EventResponseShortDto> getAllPublic(@RequestParam(defaultValue = "") final String text,
@@ -38,8 +39,8 @@ public class PublicEventController {
         return eventService.getEventsByPublic(text, categories, paid, rangeStart, rangeEnd, onlyAvailable, sort, from, size, request);
     }
 
-    @GetMapping("/{" + PATH_EVENT_ID + "}")
-    public EventResponseLongDto getEventByPublic(@PathVariable(PATH_EVENT_ID) final Long eventId,
+    @GetMapping(PATH_EVENT_ID)
+    public EventResponseLongDto getEventByPublic(@PathVariable(EVENT_ID) final Long eventId,
                                                  final HttpServletRequest request) {
         return eventService.getEventByPublic(eventId, request);
     }
