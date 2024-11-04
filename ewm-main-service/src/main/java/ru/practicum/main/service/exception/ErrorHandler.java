@@ -1,4 +1,4 @@
-package ru.practicum.stats.server.exception;
+package ru.practicum.main.service.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -15,8 +15,20 @@ public class ErrorHandler {
     }
 
     @ExceptionHandler
+    @ResponseStatus(HttpStatus.CONFLICT)
+    public ErrorResponse handleDataSave(final EWMConflictException exception) {
+        return new ErrorResponse("error", exception.getMessage());
+    }
+
+    @ExceptionHandler
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ErrorResponse handleDataSave(final EWMInternalServerErrorException exception) {
+        return new ErrorResponse("error", exception.getMessage());
+    }
+
+    @ExceptionHandler
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ErrorResponse handleNotFound(final EWMNotFoundException exception) {
         return new ErrorResponse("error", exception.getMessage());
     }
 

@@ -1,4 +1,4 @@
-package ru.practicum.stats.server.exception;
+package ru.practicum.main.service.exception;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -8,7 +8,7 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter
-public class EWMValidationException extends RuntimeException {
+public class EWMInternalServerErrorException extends RuntimeException {
 
     String message;
 

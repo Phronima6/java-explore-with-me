@@ -27,10 +27,14 @@ public class StatClient extends BaseClient {
         );
     }
 
-    public ResponseEntity<Object> findStatEvent(final String start,
-                                                final String end,
-                                                @Nullable final Collection<String> uris,
-                                                final boolean isUniqueVisits) {
+    public ResponseEntity<Object> createStat(final StatDtoInput statDtoInput) {
+        return post("/hit", statDtoInput);
+    }
+
+    public ResponseEntity<Object> getStat(final String start,
+                                          final String end,
+                                          @Nullable final Collection<String> uris,
+                                          final Boolean isUniqueVisits) {
         Map<String, Object> parameters;
         if (Objects.isNull(uris)) {
             parameters = Map.of("start", URLEncoder.encode(start, StandardCharsets.UTF_8),
@@ -43,10 +47,6 @@ public class StatClient extends BaseClient {
                 "uris", String.join(",", uris),
                 "unique", isUniqueVisits);
         return get("/stats?start={start}&end={end}&unique={unique}&uris={uris}", parameters);
-    }
-
-    public ResponseEntity<Object> saveStatEvent(final StatDtoInput statDtoInput) {
-        return post("/hit", statDtoInput);
     }
 
 }
