@@ -27,7 +27,7 @@ import java.util.Objects;
 @RequiredArgsConstructor
 @Slf4j
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-public class CompilationServiceImpl implements CompilationService {
+public class CompilationServiceImplements implements CompilationService {
 
     CompilationRepository compilationRepository;
     EventRepository eventRepository;

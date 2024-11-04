@@ -9,7 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.practicum.main.service.compilation.dto.CompilationResponseDto;
-import ru.practicum.main.service.compilation.service.CompilationServiceImpl;
+import ru.practicum.main.service.compilation.service.CompilationServiceImplements;
 import java.util.List;
 
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -19,7 +19,7 @@ import java.util.List;
 @Validated
 public class PublicCompilationController {
 
-    CompilationServiceImpl compilationService;
+    CompilationServiceImplements compilationService;
     static final String COMPILATION_ID = "comp-id";
     static final String PATH_COMPILATION_ID = "/{comp-id}";
 
