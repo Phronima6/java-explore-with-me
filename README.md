@@ -7,6 +7,13 @@ ___
 ___
 *Добавлена ветка <span style="color:green">stat_svc</span>.*<br>
 *Версия приложения:* <span style="color:yellow">**ver 1.0**</span> (Дипломный проект. Часть 1).<br>
-
+___
+*Добавлена ветка <span style="color:green">main_svc</span>.*<br>
+*Версия приложения:* <span style="color:yellow">**ver 1.1**</span> (Дипломный проект. Часть 2).<br>
+___
+*Добавлена ветка <span style="color:green">feature_comments</span>.*<br>
+*Версия приложения:* <span style="color:yellow">**ver 1.2**</span> (Дипломный проект. Часть 3).<br>
+___
+Ссылка на пул-реквест: https://github.com/Phronima6/java-explore-with-me/pull/4
 ___
 Студент Шестаков А.В.
