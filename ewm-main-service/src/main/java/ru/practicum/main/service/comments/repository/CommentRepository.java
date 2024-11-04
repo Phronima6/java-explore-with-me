@@ -11,13 +11,6 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
 
     List<Comment> findAllByEventId(Long eventId);
 
-    /*@Query("""
-            SELECT new ru.practicum.main.service.comments.dto.CommentResponseDto(c.createdOn, c.event.title, c.textContent, c.user.name)
-            FROM Comment c
-            WHERE c.id = :commentId
-            """)
-    Optional<CommentResponseDto> findCommentResponseDtoById(@Param("commentId") Long commentId);*/
-
     @Query("""
         SELECT c
         FROM Comment c
