@@ -42,7 +42,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Slf4j
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-public class EventServiceImpl implements EventService {
+public class EventServiceImplements implements EventService {
 
     EventRepository eventRepository;
     UserRepository userRepository;
